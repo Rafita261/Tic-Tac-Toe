@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="./assets/index.css">
+</head>
+<body>
+    <div id="loader" class="hidden">
+        <img src="./favicon.ico" alt="">
+    </div>
+    <h1>Tic-Tac-Toe - Défi de la semaine #5</h1>
+    <div class="container">
+        <img class="pic" src="./favicon.ico" alt="">
+        <div class="flex-wrap">
+            <button class="btn start">Jouer avec un IA</button>
+            <button class="btn start" id="multi">Jouer avec un ami</button>
+            <button class="btn start">Trouver un adversaire en ligne</button>
+        </div>
+        <div class="game hidden" id="game">
+            <table class="game_table">
+                <tr>
+                    <td id="0 0"></td>
+                    <td id="0 1"></td>
+                    <td id="0 2"></td>
+                </tr>
+                <tr>
+                    <td id="1 0"></td>
+                    <td id="1 1"></td>
+                    <td id="1 2"></td>
+                </tr>
+                <tr>
+                    <td id="2 0"></td>
+                    <td id="2 1"></td>
+                    <td id="2 2"></td>
+                </tr>
+            </table>
+            <div>
+                <p id="information">Tour de X</p>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="./assets/main.mjs"></script>
+</body>
+</html>
