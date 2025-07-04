@@ -14,9 +14,16 @@
     <div class="container">
         <img class="pic" src="./favicon.ico" alt="">
         <div class="flex-wrap">
-            <button class="btn start">Jouer avec un IA</button>
-            <button class="btn start" id="multi">Jouer avec un ami</button>
-            <button class="btn start">Trouver un adversaire en ligne</button>
+            <button class="btn start big" id="ia">Jouer avec un IA</button>
+            <select name="niveau" id="niveau" class="hidden big">
+                <option disabled selected>Selectionnez le niveau</option>
+                <option value="facile">Facile</option>
+                <option value="moyen">Moyen</option>
+                <option value="difficile">Difficile</option>
+            </select>
+            <button class="btn hidden big" id="jouer_ia">Jouer</button>
+            <button class="btn start big" id="multi">Jouer avec un ami</button>
+            <button class="btn start big" id="online">Trouver un adversaire en ligne</button>
         </div>
         <div class="game hidden" id="game">
             <table class="game_table">
@@ -38,6 +45,7 @@
             </table>
             <div>
                 <p id="information">Tour de X</p>
+                <button type="reset" class="btn hidden" id="reset">Réjouer</button>
             </div>
         </div>
     </div>

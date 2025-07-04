@@ -51,5 +51,15 @@ export default class Game{
     valid_coup(positions) {
         return this.table[positions[0]][positions[1]] == "" && !this.is_end();
     }
+    // Liste des coups possibles
+    possible_coup() {
+        let pos = [];
+        for (let i = 0; i < 3; i++){
+            for (let j = 0; j < 3; j++){
+                if (this.table[i][j]=="") pos.push([i,j])
+            }
+        }
+        return pos;
+    }
 }
 

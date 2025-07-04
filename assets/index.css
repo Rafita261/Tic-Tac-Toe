@@ -25,9 +25,9 @@ body {
 
 .container {
     min-width: fit-content;
-    min-height: 65vh;
-    width: 300px;
-    height: calc(390px + 1rem);
+    min-height: fit-content;
+    width: 600px;
+    height: 70vh;
     background: linear-gradient(135deg, #f8f8f8, #47c4fd);
     border: 1px sold rgba(255, 255, 255, 0.05);
     border-radius: 16px;
@@ -82,7 +82,7 @@ body {
     font-weight: 600;
 }
 
-.btn {
+.btn,select {
     background-color: #2a2aff;
     color: white;
     text-decoration: none;
@@ -90,7 +90,15 @@ body {
     border-radius: 10px;
     border: none;
 }
-
+select{
+    background-color: #545455;
+}
+.big{
+    width: 400px;
+        margin: 0px 100px;
+        height: 60px;
+        font-size: 18px;
+}
 .btn:hover {
     background-color: #4343db;
 }
@@ -140,7 +148,8 @@ td{
 .game{
     color: #000000 !important;
     display: flex;
-    gap: 50px;
+    flex-wrap: wrap;
+    gap: 70px;
 }
 
 .hidden{
@@ -153,7 +162,7 @@ td{
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    gap: 30px;
+    gap: 40px;
 }
 
 .absolute{
