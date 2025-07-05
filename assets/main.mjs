@@ -66,14 +66,6 @@ function jouer_un_coup() {
             game_play.coup("O", pos);
             document.getElementById(pos.join(" ")).innerText = "O";
             x = (x + 1) % 2
-            if (game_play.is_end()) {
-                if(game_play.is_winner("X"))
-                    afficherFinDePartie("victoire", "ia")
-                if (game_play.is_winner("O"))
-                    afficherFinDePartie("defaite", "ia")
-                else
-                    afficherFinDePartie("nul","ia")
-            }
         }
         if (!game_play.is_end() && niveau[niveau.selectedIndex].value == "moyen") {
             info.innerHTML += "<br>Tour de l'IA"
@@ -81,14 +73,6 @@ function jouer_un_coup() {
             game_play.coup("O", pos);
             document.getElementById(pos.join(" ")).innerText = "O";
             x = (x + 1) % 2
-            if (game_play.is_end()) {
-                if(game_play.is_winner("X"))
-                    afficherFinDePartie("victoire", "ia")
-                if (game_play.is_winner("O"))
-                    afficherFinDePartie("defaite", "ia")
-                else
-                    afficherFinDePartie("nul","ia")
-            }
         }
         if (!game_play.is_end() && niveau[niveau.selectedIndex].value == "difficile") {
             info.innerHTML += "<br>Tour de l'IA"
@@ -96,26 +80,27 @@ function jouer_un_coup() {
             game_play.coup("O", pos);
             document.getElementById(pos.join(" ")).innerText = "O";
             x = (x + 1) % 2
-            if (game_play.is_end()) {
-                if(game_play.is_winner("X"))
-                    afficherFinDePartie("victoire", "ia")
-                if (game_play.is_winner("O"))
-                    afficherFinDePartie("defaite", "ia")
-                else
-                    afficherFinDePartie("nul","ia")
-            }
         }
         if (game_play.is_null()) {
             info.innerHTML += "<br>Match Nul" ;
             x = 0;
             document.getElementById("reset").classList.remove("hidden")
-            afficherFinDePartie("nul","multi")
+            if(niveau.selectedIndex==0)
+                afficherFinDePartie("nul", "multi")
+            else
+                afficherFinDePartie("nul", "ia")
         }
         else if (game_play.is_end()) {
             info.innerHTML += "<br>Victoire pour le joueur : " + (game_play.is_winner("X") ? "X" : "O");
             x = 0;
             document.getElementById("reset").classList.remove("hidden")
-            afficherFinDePartie("victoire","multi")
+            if(niveau.selectedIndex==0)
+                afficherFinDePartie("victoire", "multi")
+            else
+                if (game_play.is_winner("X"))
+                    afficherFinDePartie("victoire", "ia")
+                else
+                    afficherFinDePartie("defaite","ia")
         }
         else {
             x = (x + 1) % 2;
