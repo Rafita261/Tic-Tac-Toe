@@ -7,12 +7,8 @@ function compare(arr1, arr2) {
 }
 
 export default class Game{
-    constructor() {
-        this.table = [
-            ["", "", ""],
-            ["", "", ""],
-            ["", "", ""]
-        ]
+    constructor(table = [["", "", ""],["", "", ""],["", "", ""]]) {
+        this.table = table
     }
     is_winner(player) {
         // Lignes Horizontal
@@ -60,6 +56,9 @@ export default class Game{
             }
         }
         return pos;
+    }
+    undo(pos) {
+        this.table[pos[0]][pos[1]] = ""
     }
 }
 

@@ -1,5 +1,6 @@
 import Game from '../game/game.mjs';
 import coup_facile from '../game/ia_facile.mjs';
+import coup_moyen from '../game/ia_moyen.mjs';
 
 let x = 1;
 let multi = document.getElementById("multi")
@@ -19,7 +20,7 @@ function jouer() {
 function jouer_un_coup() {
     let niveau = document.getElementById("niveau");
     let pos = this.id.split(" ").map(a => parseInt(a))
-    let player = x?"X":"O"
+    let player = x ? "X" : "O"
     if (game_play.valid_coup(pos)) {
         game_play.coup(player, pos)
         this.innerText = player;
@@ -28,6 +29,13 @@ function jouer_un_coup() {
         if (!game_play.is_end() && niveau[niveau.selectedIndex].value == "facile") {
             info.innerHTML += "<br>Tour de l'IA"
             pos = coup_facile(game_play);
+            game_play.coup("O", pos);
+            document.getElementById(pos.join(" ")).innerText = "O";
+            x = (x + 1) % 2
+        }
+        if (!game_play.is_end() && niveau[niveau.selectedIndex].value == "moyen") {
+            info.innerHTML += "<br>Tour de l'IA"
+            pos = coup_moyen(game_play);
             game_play.coup("O", pos);
             document.getElementById(pos.join(" ")).innerText = "O";
             x = (x + 1) % 2
