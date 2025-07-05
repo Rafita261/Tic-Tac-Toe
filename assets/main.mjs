@@ -144,5 +144,5 @@ document.getElementById("jouer_ia").addEventListener("click", async() => {
         jouer();
     }
 })
-document.getElementById("reset").addEventListener("click", () => window.location = "/")
+document.getElementById("reset").addEventListener("click", () => window.location = "/Tic-Tac-Toe")
 document.getElementById("online").addEventListener("click", ()=>alert("Desolé, le jeu en ligne ne marche pas encore"))
