@@ -3,6 +3,39 @@ import coup_facile from '../game/ia_facile.mjs';
 import coup_moyen from '../game/ia_moyen.mjs';
 import coup_difficile from '../game/ia_difficile.mjs';
 
+function afficherFinDePartie(resultat, mode) {
+    let emoji = "";
+    let titre = "";
+    let texte = "";
+
+    if (resultat === "victoire") {
+        emoji = mode === "ia" ? "✅" : "🎉";
+        titre = "Victoire !";
+        texte = mode === "ia" ? "Bravo, tu as battu l'IA !" : "Félicitations ! 🎊";
+    } else if (resultat === "defaite") {
+        emoji = "❌";
+        titre = "Dommage...";
+        texte = "Tu as perdu contre l'IA.";
+    } else if (resultat === "nul") {
+        emoji = "🤝";
+        titre = "Match nul";
+        texte = mode === "ia" ? "Vous êtes à égalité avec l'IA." : "Match équilibré entre amis.";
+    }
+
+    Swal.fire({
+        title: `${emoji} ${titre}`,
+        text: texte,
+        icon: resultat === "victoire" ? "success" : resultat === "defaite" ? "error" : "info",
+        confirmButtonText: 'Rejouer',
+        backdrop: true,
+        background: '#f0f0f0',
+        color: '#000'
+    }).then(() => {
+        document.getElementById("reset").click(); 
+    });
+}
+
+
 let x = 1;
 let multi = document.getElementById("multi")
 let info = document.getElementById("information")
@@ -33,6 +66,14 @@ function jouer_un_coup() {
             game_play.coup("O", pos);
             document.getElementById(pos.join(" ")).innerText = "O";
             x = (x + 1) % 2
+            if (game_play.is_end()) {
+                if(game_play.is_winner("X"))
+                    afficherFinDePartie("victoire", "ia")
+                if (game_play.is_winner("O"))
+                    afficherFinDePartie("defaite", "ia")
+                else
+                    afficherFinDePartie("nul","ia")
+            }
         }
         if (!game_play.is_end() && niveau[niveau.selectedIndex].value == "moyen") {
             info.innerHTML += "<br>Tour de l'IA"
@@ -40,6 +81,14 @@ function jouer_un_coup() {
             game_play.coup("O", pos);
             document.getElementById(pos.join(" ")).innerText = "O";
             x = (x + 1) % 2
+            if (game_play.is_end()) {
+                if(game_play.is_winner("X"))
+                    afficherFinDePartie("victoire", "ia")
+                if (game_play.is_winner("O"))
+                    afficherFinDePartie("defaite", "ia")
+                else
+                    afficherFinDePartie("nul","ia")
+            }
         }
         if (!game_play.is_end() && niveau[niveau.selectedIndex].value == "difficile") {
             info.innerHTML += "<br>Tour de l'IA"
@@ -47,16 +96,26 @@ function jouer_un_coup() {
             game_play.coup("O", pos);
             document.getElementById(pos.join(" ")).innerText = "O";
             x = (x + 1) % 2
+            if (game_play.is_end()) {
+                if(game_play.is_winner("X"))
+                    afficherFinDePartie("victoire", "ia")
+                if (game_play.is_winner("O"))
+                    afficherFinDePartie("defaite", "ia")
+                else
+                    afficherFinDePartie("nul","ia")
+            }
         }
         if (game_play.is_null()) {
             info.innerHTML += "<br>Match Nul" ;
             x = 0;
             document.getElementById("reset").classList.remove("hidden")
+            afficherFinDePartie("nul","multi")
         }
         else if (game_play.is_end()) {
             info.innerHTML += "<br>Victoire pour le joueur : " + (game_play.is_winner("X") ? "X" : "O");
             x = 0;
             document.getElementById("reset").classList.remove("hidden")
+            afficherFinDePartie("victoire","multi")
         }
         else {
             x = (x + 1) % 2;
